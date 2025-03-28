@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>URLメモ & キャラクターJSON管理</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>URLメモ & キャラJSON管理</h1>
+
+  <div class="export-controls">
+    <button onclick="exportHtmlFullPage()">メモ部分をHTMLとして保存</button>
+    <button onclick="exportFullTxt()">表示状態を保存</button>
+    <input type="file" accept=".txt" onchange="importFullTxt(event)" />
+  </div>
+
+  <div class="section" id="urlSection">
+    <h2>URLメモ</h2>
+    <input type="text" id="urlTitle" placeholder="ルーム名やメモのタイトル" />
+    <input type="text" id="urlValue" placeholder="URL" />
+    <button class="add-button" onclick="addUrlEntry()">URLを追加</button>
+    <div id="urlList"></div>
+  </div>
+
+  <div class="section" id="charSection">
+    <h2>キャラクター登録</h2>
+    <input type="text" id="charName" placeholder="キャラクター名" />
+    <input type="text" id="charIcon" placeholder="キャラクターのアイコンURL (50x50) 任意" />
+    <textarea id="charNote" placeholder="キャラクターのメモ（任意）"></textarea>
+    <input type="text" id="charUrl" placeholder="キャラクターに関連するURL (任意)" />
+    <textarea id="charJson" placeholder="キャラクターJSON（ココフォリア用）"></textarea>
+<button class="add-button" onclick="addCharacter()">キャラクターを登録</button>
+
+    <div id="charList"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
