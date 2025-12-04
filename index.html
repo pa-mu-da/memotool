@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8" />
   <title>URLメモ & キャラクターJSON管理</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <h1>URLメモ & キャラJSON管理</h1>
+  <p class="subtitle">URL・キャラクターデータを一元的に管理できます</p>
+  <p class="subtitle">ローカルストレージに保存されだものを使用できますが、json形式での保存・読み込みも可能です</p>
+  <p class="subtitle">html形式で出力して簡易なリンク集として使用できます。出力したものは自由にご利用ください</p>
 
   <div class="export-controls">
-    <button onclick="exportHtmlFullPage()">メモ部分をHTMLとして保存</button>
-    <button onclick="exportFullTxt()">表示状態を保存</button>
+    <button onclick="exportHtmlFullPage()">html出力</button>
+    <button onclick="exportFullTxt()">jsonで保存</button>
     <input type="file" accept=".txt" onchange="importFullTxt(event)" />
+    <button onclick="toggleTheme()">カラーモード切替</button>
   </div>
 
   <div class="section" id="urlSection">
@@ -24,16 +30,24 @@
 
   <div class="section" id="charSection">
     <h2>キャラクター登録</h2>
-    <input type="text" id="charName" placeholder="キャラクター名" />
-    <input type="text" id="charIcon" placeholder="キャラクターのアイコンURL (50x50) 任意" />
+    <input type="text" id="charName" placeholder="キャラクター名 (必須)" />
+
+    <div class="image-input-toggle">
+      <label><input type="radio" name="imageType" value="none" onchange="toggleImageInput()"> 画像なし</label>
+      <label><input type="radio" name="imageType" value="file" checked onchange="toggleImageInput()"> アップロード</label>
+      <label><input type="radio" name="imageType" value="url" onchange="toggleImageInput()"> URL指定</label>
+    </div>
+    <input type="file" id="charImageFile" accept="image/*" />
+    <input type="text" id="charIcon" placeholder="キャラクターのアイコンURL" style="display:none;" />
     <textarea id="charNote" placeholder="キャラクターのメモ（任意）"></textarea>
     <input type="text" id="charUrl" placeholder="キャラクターに関連するURL (任意)" />
-    <textarea id="charJson" placeholder="キャラクターJSON（ココフォリア用）"></textarea>
-<button class="add-button" onclick="addCharacter()">キャラクターを登録</button>
+    <textarea id="charJson" placeholder="コピーテキスト（任意）"></textarea>
+    <button class="add-button" onclick="addCharacter()">キャラクターを登録</button>
 
     <div id="charList"></div>
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>
